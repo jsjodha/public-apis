@@ -1,0 +1,4367 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "myspectra-lov",
+        "description": "mySPECTRA LOV",
+        "contact": {
+            "name": "cao.shun",
+            "url": "https://gigantic-server.com",
+            "email": "cao.shun@ng-networks.cn"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://foo.bar"
+        },
+        "version": "2.1.1-SNAPSHOT"
+    },
+    "paths": {
+        "/api/definition/language/master": {
+            "get": {
+                "tags": [
+                    "Single tenant (DEFAULT)"
+                ],
+                "summary": "Get master language",
+                "operationId": "getMasterLanguage",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "getMasterLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logging": {
+            "get": {
+                "tags": [
+                    "Logging Controller"
+                ],
+                "summary": "Get root level status",
+                "description": "Get root level status",
+                "operationId": "getRootLevel",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "getRootLevel 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logging/set": {
+            "post": {
+                "tags": [
+                    "Logging Controller"
+                ],
+                "summary": "Get logging status",
+                "description": "Get logging status",
+                "operationId": "setLogginLevel",
+                "parameters": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "level": {
+                                        "type": "string",
+                                        "description": "set root level"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "setLogginLevel 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/lov/configuration/service/relationship": {
+            "get": {
+                "tags": [
+                    "Single tenant (DEFAULT)"
+                ],
+                "summary": "Return all relationship of service and sub-service",
+                "operationId": "getServiceRelationShip",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 20,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getServiceRelationShip 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/lov/get/language": {
+            "get": {
+                "tags": [
+                    "Single tenant (DEFAULT)"
+                ],
+                "summary": "To get lov with language",
+                "operationId": "getLovWithLanguage",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "key"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getLovWithLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/lov/link/list": {
+            "get": {
+                "tags": [
+                    "Single tenant (DEFAULT)"
+                ],
+                "summary": "To list linked lov",
+                "operationId": "listLinkLov",
+                "parameters": [
+                    {
+                        "name": "parentTable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentTable"
+                        }
+                    },
+                    {
+                        "name": "parentColumn",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentColumn"
+                        }
+                    },
+                    {
+                        "name": "parentKey",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentKey"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childTable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "childTable"
+                        }
+                    },
+                    {
+                        "name": "childColumn",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "childColumn"
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "true => active ; false => inactive",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childService",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childService",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childSubservice",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childSubservice",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childModule",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childModule",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLinkLov 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/lov/list": {
+            "get": {
+                "tags": [
+                    "Single tenant (DEFAULT)"
+                ],
+                "summary": "To list lov with language and filter",
+                "operationId": "listLov",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "module",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "service",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "subService",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "subService",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "inclusiveFiltering",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "subService",
+                            "nullable": true,
+                            "enum": [
+                                "yes",
+                                "no"
+                            ],
+                            "default": "yes"
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "Sort by key or values(expected value: 'key-asc', 'key-desc', 'value-asc', 'value-desc')",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "sortByList",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "description": "Sort by List of keys",
+                            "nullable": true,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLov 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/infos": {
+            "get": {
+                "tags": [
+                    "Common Rest Controller"
+                ],
+                "summary": "Get server infos",
+                "description": "Get server infos",
+                "operationId": "getServerInfos",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "getServerInfos 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/status": {
+            "get": {
+                "tags": [
+                    "Common Rest Controller"
+                ],
+                "summary": "Get server status",
+                "description": "Get server status",
+                "operationId": "getServerStatus",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "getServerStatus 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/checkSystemTenant": {
+            "post": {
+                "tags": [
+                    "tenant methods"
+                ],
+                "summary": "check system tenant",
+                "description": "check system tenant",
+                "operationId": "checkSystemTenant",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "checkSystemTenant 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/list": {
+            "get": {
+                "tags": [
+                    "tenant methods"
+                ],
+                "summary": "list all tenant",
+                "description": "list all tenant",
+                "operationId": "listAllTenant",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "listAllTenant 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/{tenant}": {
+            "post": {
+                "tags": [
+                    "tenant methods"
+                ],
+                "summary": "add new tenant",
+                "description": "add new tenant",
+                "operationId": "addTenant",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "addTenant 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/{tenant}/delete": {
+            "post": {
+                "tags": [
+                    "tenant methods"
+                ],
+                "summary": "delete tenant",
+                "description": "delete tenant",
+                "operationId": "deleteTenant",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deleteTenant 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/cache": {
+            "get": {
+                "tags": [
+                    "CacheController"
+                ],
+                "summary": "To fetch cache of LOV",
+                "description": "All info for specific LOV(table column)",
+                "operationId": "getCache",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "table"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "column"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getCache 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/configuration/filters/schema/download": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs service&subservice&module configuration schema download ",
+                "operationId": "DownloadConfigureFilter",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "DownloadConfigureFilter 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/configuration/filters/upload": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "Service, subservice, module list definition",
+                "operationId": "fileUploadFilter",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "description": "file",
+                                        "format": "binary"
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "description": "comment"
+                                    },
+                                    "user": {
+                                        "type": "string",
+                                        "description": "user"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "fileUploadFilter 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/configuration/languages/schema/download": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs languages configuration schema download ",
+                "operationId": "DownloadConfigureLanguge",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "DownloadConfigureLanguge 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/configuration/languages/upload": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "Language list definition",
+                "operationId": "fileUploadLanguge",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "description": "file",
+                                        "format": "binary"
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "description": "comment"
+                                    },
+                                    "user": {
+                                        "type": "string",
+                                        "description": "user"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "fileUploadLanguge 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/activate": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "Write LOVs definition to schema",
+                "operationId": "activeFile",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ActiveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "activeFile 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/file/download": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs definition file download",
+                "description": "application/octet-stream",
+                "operationId": "download",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fileId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "description": "fileId",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "download 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/language/master": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "Get master language",
+                "operationId": "getMasterLanguage_1",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getMasterLanguage_1 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/language/master/set": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "Set master language",
+                "description": "Set master language",
+                "operationId": "setMasterLanguage",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SetMasterLanguageVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "setMasterLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/list": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "List of definition files",
+                "operationId": "listLov_1",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLov_1 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/schema/download": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs definition schema download",
+                "description": "application/octet-stream",
+                "operationId": "downloadReport",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "exportType",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "exportType"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "downloadReport 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/definition/upload": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs definition upload",
+                "operationId": "fileUpload",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "user": {
+                                        "maxLength": 20,
+                                        "type": "string"
+                                    },
+                                    "comment": {
+                                        "maxLength": 20,
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "fileUpload 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/activate": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To activate or deactivate a LOV key (flag true => active;false => inactive)",
+                "operationId": "activate",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovActiveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "activate 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/conditional": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To set link of lov(flag true => conditional new;false => conditional update)",
+                "operationId": "conditional",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovConditionalVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "conditional 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/define": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To define or update a LOV record(flag true => define new;false => define update)",
+                "operationId": "define",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovDefineVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "define 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/delete": {
+            "delete": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To delete a LOV key",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovDeleteVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "delete 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/filter": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To filter LOV key (flag true => filter new;false => filter update)",
+                "operationId": "filter",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovFilterVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "filter 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/action/translate": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To translate a LOV key (flag true => translate new;false => translate update)",
+                "operationId": "translate",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovTranslateVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "translate 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/configuration/delete": {
+            "delete": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Remove services, subservices, modules and all languages except master",
+                "operationId": "configurationDelete",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "configurationDelete 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/configuration/keys": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all Services/Sub-Service/Languages/Modules present in the Database",
+                "description": "Return all Services present in the Database, the result is stored in an list of String (key - value)Services are stored in Table=LOV and Column=L_SERVICE/L_SUBSERVICE/L_LANGUAGE/L_MODULE",
+                "operationId": "getDefinitionKeys",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 20,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getDefinitionKeys 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/configuration/service/relationship": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all relationship of service and sub-service",
+                "operationId": "getServiceRelationShip_1",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 20,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getServiceRelationShip_1 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/definitions/delete": {
+            "delete": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Remove LOV definitions leaving services, subservices, modules and languages",
+                "operationId": "deleteData",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deleteData 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/get": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To get lov with language and filter",
+                "operationId": "getLovWithAllParam",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "key"
+                        }
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "module",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "service",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "subService",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "subService",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getLovWithAllParam 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/get/language": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To get lov with language",
+                "operationId": "getLovWithLanguage_1",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "key"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getLovWithLanguage_1 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/link/list": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To list linked lov",
+                "operationId": "listLinkLov_1",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "parentTable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentTable"
+                        }
+                    },
+                    {
+                        "name": "parentColumn",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentColumn"
+                        }
+                    },
+                    {
+                        "name": "parentKey",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "parentKey"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childTable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "childTable"
+                        }
+                    },
+                    {
+                        "name": "childColumn",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "childColumn"
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "true => active ; false => inactive",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childService",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childService",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childSubservice",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childSubservice",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "childModule",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "childModule",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLinkLov_1 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/list": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To list lov with language and filter",
+                "operationId": "listLov_2",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "module",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "service",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "subService",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "subService",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "inclusiveFiltering",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "subService",
+                            "nullable": true,
+                            "enum": [
+                                "yes",
+                                "no"
+                            ],
+                            "default": "yes"
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "Sort by key or values(expected value: 'key-asc', 'key-desc', 'value-asc', 'value-desc')",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "sortByList",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "description": "Sort by List of keys",
+                            "nullable": true,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLov_2 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/list/language": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "To list lov with language",
+                "operationId": "listLovWithLanguage",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "active",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "active",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "listLovWithLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/columns": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all Lov Columns present in the Database",
+                "description": "Return all Lov Columns present in the Database for a given Lov Table. In case the Input parameter Table is null then all Lov columns will be returned.",
+                "operationId": "getColumns",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "The table corresponding to the columns you want to fetch. If value is null then all lov columns will be returned",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getColumns 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/table/column/info": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all Lov Tables and Columns with overview information",
+                "description": "Return all Lov Tables and Columns with overview information",
+                "operationId": "getTableColumnInfo",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getTableColumnInfo 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/table/column/key/filters": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all Filters for a specific key",
+                "description": "Return all Lov Tables present in the Database, the result is stored in an list of String",
+                "operationId": "getKeyFilters",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "Column"
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "key"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getKeyFilters 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/table/column/key/filters/copy": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Copy or Merge all Filters to a specific key",
+                "description": "Copy or Merge all Filters to a specific key",
+                "operationId": "mergeOrCopyFilters",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovKeyFilterMergeVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "mergeOrCopyFilters 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/table/column/key/filters/remove": {
+            "post": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Removes Filters of a specific key",
+                "description": "Depending to the input parameters will remove Services/Subservices/Modules Filters.If no service, subservice, module keys are entered as parameter the method will return an error.",
+                "operationId": "removeFilters",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovKeyFilterRemoveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "removeFilters 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/table/column/keys": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return a Keys overview",
+                "description": "Return all Lov Keys linked to the Table and /or Column input parameter with some overview informations",
+                "operationId": "getTableColumsnKeys",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "table",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "required": [
+                                "true"
+                            ],
+                            "type": "string",
+                            "description": "The table name"
+                        }
+                    },
+                    {
+                        "name": "column",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 20,
+                            "minLength": 1,
+                            "required": [
+                                "true"
+                            ],
+                            "type": "string",
+                            "description": "The column name"
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "The Keys corresponding to the keys you want to fetch. You can enter more than one Key filters by appending the key with semicolon ex : key_1;Key3.If value is null then this filter won't be applied",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "secondLanguage",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "The second language code corresponding that you want to see in the result. You can enter more than one Key filters by appending the key with semicolon ex : key_1;Key3.If value is null then the result won't have data in the field SecondLanguageValue",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getTableColumsnKeys 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/lov/view/tables": {
+            "get": {
+                "tags": [
+                    "LovController"
+                ],
+                "summary": "Return all Lov Tables present in the Database",
+                "description": "Return all Lov Tables present in the Database, the result is stored in an list of String",
+                "operationId": "getTables",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getTables 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/template/download": {
+            "get": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs definition schema download",
+                "description": "application/octet-stream",
+                "operationId": "downloadTemplate",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "maxLength": 30,
+                            "type": "string",
+                            "description": "language",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "templateType",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "templateType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "downloadTemplate 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/template/upload": {
+            "post": {
+                "tags": [
+                    "LovFileController"
+                ],
+                "summary": "LOVs template upload",
+                "operationId": "templateUpload",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "language": {
+                                        "maxLength": 20,
+                                        "type": "string"
+                                    },
+                                    "update": {
+                                        "maxLength": 20,
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "type": {
+                                        "maxLength": 20,
+                                        "type": "string"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "templateUpload 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/conditional/deleteLovLink": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Delete lov link",
+                "description": "Delete lov link",
+                "operationId": "deleteLovLink",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteLovLinkVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteLovLink 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/deleteLanguage": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Remove language and all its translated values",
+                "description": "Remove language and all its translated values",
+                "operationId": "deleteLovLanguage",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteLanguageVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteLovLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/deleteLov": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Delete lov",
+                "description": "Delete lov",
+                "operationId": "deleteLov",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteLovVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteLov 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/deleteModule": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Delete Module",
+                "description": "Delete Module",
+                "operationId": "deleteModule",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteLovVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteModule 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/deleteService": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "remove service and all its sub-services",
+                "description": "remove service and all its sub-services",
+                "operationId": "deleteService",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovDeleteServiceVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteService 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/deleteSubservice": {
+            "delete": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "delete list of subservices",
+                "description": "delete list of subservices",
+                "operationId": "deleteSubservice",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovDeleteSubServiceVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "deleteSubservice 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/getServiceAndModuleByLov": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Get Service by lov",
+                "description": "Get Service by lov",
+                "operationId": "getServiceAndModuleByLov",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovGetVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "getServiceAndModuleByLov 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/moduleTable": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "create and edit Module in-line in the table",
+                "description": "create and edit Module in-line in the table",
+                "operationId": "moduleTable",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovSaveModuleVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "moduleTable 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/saveKey": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "UpdateCreateKey_UI",
+                "description": "Add new key",
+                "operationId": "saveKey",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovKeySaveVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "saveKey 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/saveLanguage": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Used to add and edit language",
+                "description": "Used to add and edit language",
+                "operationId": "saveLovLanguage",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovLanguageSaveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "saveLovLanguage 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/saveLov": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Add new lov",
+                "description": "Add new lov",
+                "operationId": "saveLov",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovSaveParamVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "saveLov 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/saveLovOverView": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Add new lov-level-overview",
+                "description": "Add new lov-level-overview",
+                "operationId": "saveLovOverView",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovLevelOverviewSaveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "saveLovOverView 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/serviceLevelTable": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "create and edit Service in-line in the table",
+                "description": "create and edit Service in-line in the table",
+                "operationId": "serviceLevelTable",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovSaveServiceVo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "serviceLevelTable 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/action/subserviceLevelTable": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "create and edit subservice in-line in the table",
+                "description": "create and edit subservice in-line in the table",
+                "operationId": "subserviceLevelTable",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovSubServiceSaveVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "subserviceLevelTable 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/getLovService": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Get lov service list",
+                "description": "Get lov service list",
+                "operationId": "getLovService",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovGetServiceVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "getLovService 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/getLovSubService": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "Get lov subservice ist",
+                "description": "Get lov subservice list",
+                "operationId": "listLovSubService",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovGetServiceVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "listLovSubService 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/list/getSvAndSubSv": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "returns nested service/subservices lists in a given language",
+                "description": "returns nested service/subservices lists in a given language",
+                "operationId": "getSvAndSubSv",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "language": {
+                                        "maxLength": 20,
+                                        "type": "string",
+                                        "description": "language",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "getSvAndSubSv 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{tenant}/ui/list/listLovRelatedToModule": {
+            "post": {
+                "tags": [
+                    "UI methods"
+                ],
+                "summary": "returns all LOV keys related to the module",
+                "description": "returns all LOV keys related to the module",
+                "operationId": "listLovRelatedToModule",
+                "parameters": [
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 25,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LovModuleFilterVO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "listLovRelatedToModule 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Result"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ActiveVO": {
+                "type": "object",
+                "properties": {
+                    "fileId": {
+                        "type": "integer",
+                        "description": "fileId",
+                        "format": "int64"
+                    }
+                }
+            },
+            "DeleteLanguageVo": {
+                "type": "object",
+                "properties": {
+                    "languageList": {
+                        "maxItems": 50,
+                        "type": "array",
+                        "description": "language key list",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "idList": {
+                        "maxItems": 50,
+                        "type": "array",
+                        "description": "language id list",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "DeleteLovLinkVO": {
+                "type": "object",
+                "properties": {
+                    "parentTable": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentTable"
+                    },
+                    "parentColumn": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentColumn"
+                    },
+                    "parentKey": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentKey"
+                    },
+                    "childTable": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "childTable"
+                    },
+                    "childColumn": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "childColumn"
+                    },
+                    "childKeys": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "childKeys",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "DeleteLovVo": {
+                "type": "object",
+                "properties": {
+                    "keyList": {
+                        "maxItems": 50,
+                        "type": "array",
+                        "description": "lov key list",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "idList": {
+                        "maxItems": 50,
+                        "type": "array",
+                        "description": "lov id list",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "ErrorInfo": {
+                "type": "object",
+                "properties": {
+                    "codeI18n": {
+                        "type": "string",
+                        "description": "codeI18n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "name"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "message"
+                    }
+                }
+            },
+            "LanguageValuePairVo": {
+                "type": "object",
+                "properties": {
+                    "lang_key": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "lang_key"
+                    },
+                    "value": {
+                        "maxLength": 3999,
+                        "type": "string",
+                        "description": "Value"
+                    }
+                }
+            },
+            "LovActiveVO": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LovInsertVO"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "table": {
+                                "maxLength": 20,
+                                "minLength": 1,
+                                "type": "string",
+                                "description": "Table name"
+                            },
+                            "column": {
+                                "maxLength": 20,
+                                "minLength": 1,
+                                "type": "string",
+                                "description": "Column"
+                            },
+                            "keys": {
+                                "type": "array",
+                                "description": "keys",
+                                "nullable": true,
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "flag": {
+                                "type": "boolean",
+                                "description": "flag true => active;false => inactive"
+                            }
+                        }
+                    }
+                ]
+            },
+            "LovConditionalVO": {
+                "type": "object",
+                "properties": {
+                    "parentTable": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentTable"
+                    },
+                    "parentColumn": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentColumn"
+                    },
+                    "parentKey": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "parentKey"
+                    },
+                    "childTable": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "childTable"
+                    },
+                    "childColumn": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "childColumn"
+                    },
+                    "childKeys": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "childKeys",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "flag": {
+                        "type": "boolean",
+                        "description": "flag true => conditional new;false => conditional update"
+                    }
+                }
+            },
+            "LovDataBaseVO": {
+                "type": "object"
+            },
+            "LovDefineVO": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LovInsertVO"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "pairs": {
+                                "minItems": 1,
+                                "type": "array",
+                                "description": "pairs of {key:value}",
+                                "items": {
+                                    "$ref": "#/components/schemas/PairWithAllVo"
+                                }
+                            },
+                            "flag": {
+                                "type": "boolean",
+                                "description": "flag true => define new;false => define update"
+                            }
+                        },
+                        "description": "LovDefineVO"
+                    }
+                ]
+            },
+            "LovDeleteServiceVo": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key name"
+                    }
+                }
+            },
+            "LovDeleteSubServiceVO": {
+                "type": "object",
+                "properties": {
+                    "subserviceKey": {
+                        "maxLength": 50,
+                        "type": "string",
+                        "description": "subserviceKey"
+                    },
+                    "idList": {
+                        "maxItems": 50,
+                        "type": "array",
+                        "description": "Table idList",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "LovDeleteVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column name"
+                    },
+                    "keys": {
+                        "type": "array",
+                        "description": "Keys, if no keys provided - all keys for given table/column",
+                        "nullable": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "LovFilterVO": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LovInsertVO"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "pairs": {
+                                "minItems": 1,
+                                "type": "array",
+                                "description": "pairs of {key:service:sub-service}",
+                                "items": {
+                                    "$ref": "#/components/schemas/PairFilterVo"
+                                }
+                            },
+                            "flag": {
+                                "type": "boolean",
+                                "description": "flag true => filter new;false => filter update"
+                            }
+                        }
+                    }
+                ]
+            },
+            "LovGetServiceVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column"
+                    },
+                    "key": {
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "language": {
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "language",
+                        "nullable": true
+                    }
+                }
+            },
+            "LovGetVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column"
+                    },
+                    "key": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "language": {
+                        "maxLength": 30,
+                        "type": "string",
+                        "description": "language",
+                        "nullable": true
+                    }
+                }
+            },
+            "LovInsertVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column"
+                    }
+                }
+            },
+            "LovKeyFilterMergeVO": {
+                "type": "object",
+                "properties": {
+                    "fromTable": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "fromTable"
+                    },
+                    "fromColumn": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "fromColumn"
+                    },
+                    "fromKey": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "fromKey"
+                    },
+                    "toTable": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "toTable"
+                    },
+                    "toColumn": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "toColumn"
+                    },
+                    "toKey": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "toKey"
+                    },
+                    "merge": {
+                        "type": "boolean",
+                        "description": "Copy Or Merge.Copy (parameter set to false) will delete all existing filters of the destination key and copy the one comming from the from key.Merge (Parameter set to true) will add the missing filters in the destination key from the from key.(true => merge,false => copy)"
+                    }
+                }
+            },
+            "LovKeyFilterRemoveVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column"
+                    },
+                    "key": {
+                        "maxLength": 30,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "services": {
+                        "type": "string",
+                        "description": "Comma separated of service keys to remove(8;2)"
+                    },
+                    "subServices": {
+                        "type": "string",
+                        "description": "Comma separated of Subservice keys to remove(802;202)"
+                    },
+                    "modules": {
+                        "type": "string",
+                        "description": "Comma separated of Modules keys to remove(emc;obs)"
+                    }
+                }
+            },
+            "LovKeySaveVo": {
+                "required": [
+                    "column",
+                    "table"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "table": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "column": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "key": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/PairVo"
+                        }
+                    },
+                    "serviceParams": {
+                        "type": "array",
+                        "description": "",
+                        "items": {
+                            "$ref": "#/components/schemas/LovServiceParamVO"
+                        }
+                    },
+                    "moduleKey": {
+                        "type": "array",
+                        "description": "moduleKey",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "updateFlag": {
+                        "type": "boolean",
+                        "description": "updateFlag"
+                    }
+                }
+            },
+            "LovLanguageSaveVO": {
+                "type": "object",
+                "properties": {
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/PairVo"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    }
+                }
+            },
+            "LovLevelOverviewSaveVO": {
+                "type": "object",
+                "properties": {
+                    "table": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Table name"
+                    },
+                    "column": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Column"
+                    }
+                }
+            },
+            "LovModuleFilterVO": {
+                "type": "object",
+                "properties": {
+                    "moModule": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LovSaveModuleVO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/LanguageValuePairVo"
+                        }
+                    }
+                }
+            },
+            "LovSaveParamVO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "table": {
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "column": {
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/PairVo"
+                        }
+                    }
+                }
+            },
+            "LovSaveServiceVo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/LanguageValuePairVo"
+                        }
+                    }
+                }
+            },
+            "LovServiceParamVO": {
+                "type": "object",
+                "properties": {
+                    "serviceKey": {
+                        "type": "string",
+                        "description": "serviceKey"
+                    },
+                    "subServiceKeys": {
+                        "type": "array",
+                        "description": "subServiceKeys",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "LovSubServiceSaveVO": {
+                "required": [
+                    "parentId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "parentId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "key"
+                    },
+                    "activate": {
+                        "type": "integer",
+                        "description": "activate",
+                        "format": "int32"
+                    },
+                    "comments": {
+                        "type": "string",
+                        "description": "comments"
+                    },
+                    "customOrigKey": {
+                        "type": "string",
+                        "description": "customOrigKey"
+                    },
+                    "value": {
+                        "minItems": 1,
+                        "type": "array",
+                        "description": "value",
+                        "items": {
+                            "$ref": "#/components/schemas/LanguageValuePairVo"
+                        }
+                    }
+                }
+            },
+            "LovTranslateVO": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LovInsertVO"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "pairs": {
+                                "minItems": 1,
+                                "type": "array",
+                                "description": "pairs of {key:value}",
+                                "items": {
+                                    "$ref": "#/components/schemas/PairWithLanguageVo"
+                                }
+                            },
+                            "flag": {
+                                "type": "boolean",
+                                "description": "flag true => translate new;false => translate update"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PairFilterVo": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Key"
+                    },
+                    "service": {
+                        "type": "string",
+                        "description": "service like : 2;8 (Please use a semicolon to separate)"
+                    },
+                    "subService": {
+                        "type": "string",
+                        "description": "subService like : 201;801 (Please use a semicolon to separate)"
+                    },
+                    "module": {
+                        "type": "string",
+                        "description": "Module in database (Please use a semicolon to separate)"
+                    }
+                }
+            },
+            "PairVo": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Key"
+                    },
+                    "value": {
+                        "maxLength": 3999,
+                        "type": "string",
+                        "description": "Value"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "description": "active"
+                    }
+                }
+            },
+            "PairWithAllVo": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PairVo"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "language": {
+                                "maxLength": 20,
+                                "type": "string",
+                                "description": "language"
+                            },
+                            "customerCode": {
+                                "maxLength": 100,
+                                "type": "string",
+                                "description": "customerCode"
+                            },
+                            "comments": {
+                                "maxLength": 3999,
+                                "type": "string",
+                                "description": "comments"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PairWithLanguageVo": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PairVo"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "language": {
+                                "maxLength": 30,
+                                "minLength": 1,
+                                "type": "string",
+                                "description": "language"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Result": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "code",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "string",
+                        "description": "data"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "message"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "description": "total",
+                        "format": "int32"
+                    },
+                    "rows": {
+                        "type": "array",
+                        "description": "rows",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "errors": {
+                        "type": "array",
+                        "description": "errors",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorInfo"
+                        }
+                    }
+                }
+            },
+            "SetMasterLanguageVO": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/LovDataBaseVO"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "language": {
+                                "maxLength": 20,
+                                "minLength": 1,
+                                "type": "string",
+                                "description": "language"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
